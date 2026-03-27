@@ -29,13 +29,30 @@
         <a href="/" class="text-xl font-bold">TASTY FOOD</a>
 
         <!-- Desktop Menu -->
-        <nav class="hidden lg:flex space-x-8 font-semibold">
-            <a href="/" class="hover:text-gray-300">HOME</a>
-            <a href="/tentang" class="underline">TENTANG</a>
-            <a href="/berita" class="hover:text-gray-300">BERITA</a>
-            <a href="/gallery" class="hover:text-gray-300">GALERI</a>
-            <a href="/kontak" class="hover:text-gray-300">KONTAK</a>
-        </nav>
+       <nav class="hidden lg:flex space-x-8 text-sm tracking-wider">
+
+<a href="/" class="relative hover:text-gray-300">
+HOME
+</a>
+
+<a href="/tentang" class="relative font-bold">
+TENTANG
+<span class="absolute left-0 -bottom-1 w-full h-[2px] bg-white"></span>
+</a>
+
+<a href="/berita" class="relative hover:text-gray-300">
+BERITA
+</a>
+
+<a href="/gallery" class="relative hover:text-gray-300">
+GALERI
+</a>
+
+<a href="/kontak" class="relative hover:text-gray-300">
+KONTAK
+</a>
+
+</nav>
 
         <!-- Hamburger -->
         <button @click="open = !open" class="lg:hidden">

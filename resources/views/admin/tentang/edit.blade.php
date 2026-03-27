@@ -1,134 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Edit Tentang</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Tentang</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        .container {
-            width: 500px;
-            margin: 60px auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+*{
+box-sizing:border-box;
+}
 
-        h1 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #333;
-        }
+body{
+    font-family: Arial, sans-serif;
+    background:#FFD747;
+    margin:0;
+    padding:20px;
+}
 
-        label {
-            font-weight: bold;
-            color: #444;
-        }
+/* CONTAINER */
+.container{
+    max-width:500px;
+    width:100%;
+    margin:70px auto;
+    background:white;
+    padding:35px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
 
-        textarea,
-        input[type="file"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
+/* TITLE */
+h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#333;
+}
 
-        textarea {
-            resize: vertical;
-        }
+/* LABEL */
+label{
+    font-weight:bold;
+    color:#444;
+    display:block;
+    margin-bottom:6px;
+}
 
-        .preview {
-            margin-bottom: 15px;
-        }
+/* INPUT */
+textarea,
+select,
+input[type="file"]{
+    width:100%;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    margin-bottom:18px;
+    font-size:14px;
+}
 
-        .preview img {
-            width: 120px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
+textarea{
+    resize:vertical;
+}
 
-        .btn-group {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+/* IMAGE PREVIEW */
+.preview{
+    margin-bottom:15px;
+}
 
-        button {
-            background: #198754;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+.preview img{
+    width:130px;
+    max-width:100%;
+    border-radius:8px;
+    border:2px solid #eee;
+}
 
-        button:hover {
-            background: #157347;
-        }
+/* BUTTON GROUP */
+.btn-group{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:25px;
+}
 
-        .btn-back {
-            text-decoration: none;
-            background: #6c757d;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
+/* BUTTON UPDATE */
+button{
+    background:#FFD747;
+    color:#333;
+    border:none;
+    padding:12px 24px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-        .btn-back:hover {
-            background: #5c636a;
-        }
-    </style>
+button:hover{
+    background:#ffca1a;
+}
+
+/* BUTTON BACK */
+.btn-back{
+    text-decoration:none;
+    background:#333;
+    color:white;
+    padding:12px 24px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn-back:hover{
+    background:#555;
+}
+
+/* RESPONSIVE */
+@media (max-width:600px){
+
+.container{
+    margin:30px auto;
+    padding:25px;
+}
+
+h1{
+    font-size:22px;
+}
+
+.btn-group{
+    flex-direction:column;
+}
+
+button,
+.btn-back{
+    width:100%;
+    text-align:center;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
 <div class="container">
-    <h1>Edit Data Tentang</h1>
 
-    <form action="{{ route('admin.tentang.update', $tentang->id) }}"
-          method="POST"
-          enctype="multipart/form-data">
+<h1>Edit Data Tentang</h1>
 
-        @csrf
-        @method('PUT')
+<form action="{{ route('admin.tentang.update', $tentang->id) }}"
+method="POST"
+enctype="multipart/form-data">
 
-        <label>Section</label>
-        <select name="section" required>
-            <option value="tasty_food" {{ $tentang->section == 'tasty_food' ? 'selected' : '' }}>Tasty Food</option>
-            <option value="visi" {{ $tentang->section == 'visi' ? 'selected' : '' }}>Visi</option>
-            <option value="misi" {{ $tentang->section == 'misi' ? 'selected' : '' }}>Misi</option>
-        </select>
+@csrf
+@method('PUT')
 
-        <label>Deskripsi</label>
-        <textarea name="deskripsi" rows="5" required>{{ $tentang->deskripsi }}</textarea>
+<label>Section</label>
+<select name="section" required>
+<option value="tasty_food" {{ $tentang->section == 'tasty_food' ? 'selected' : '' }}>Tasty Food</option>
+<option value="visi" {{ $tentang->section == 'visi' ? 'selected' : '' }}>Visi</option>
+<option value="misi" {{ $tentang->section == 'misi' ? 'selected' : '' }}>Misi</option>
+</select>
 
-        <label>Foto</label>
+<label>Deskripsi</label>
+<textarea name="deskripsi" rows="5" required>{{ $tentang->deskripsi }}</textarea>
 
-        @if ($tentang->gambar)
-            <div class="preview">
-                <img src="{{ asset('storage/' . $tentang->gambar) }}">
-            </div>
-        @endif
+<label>Foto</label>
 
-        <input type="file" name="gambar">
+@if ($tentang->gambar)
+<div class="preview">
+<img src="{{ asset('storage/' . $tentang->gambar) }}">
+</div>
+@endif
 
-        <div class="btn-group">
-            <button type="submit">💾 Update</button>
-            <a href="{{ route('admin.tentang.index') }}" class="btn-back">⬅ Kembali</a>
-        </div>
-    </form>
+<input type="file" name="gambar">
+
+<div class="btn-group">
+<button type="submit">💾 Update</button>
+<a href="{{ route('admin.tentang.index') }}" class="btn-back">⬅ Kembali</a>
+</div>
+
+</form>
+
 </div>
 
 </body>
 </html>
+

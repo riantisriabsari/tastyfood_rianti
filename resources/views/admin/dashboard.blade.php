@@ -89,13 +89,13 @@ Kelola
 
 <!-- Pesan Pengunjung -->
 <div class="bg-white rounded-xl shadow p-6 border-t-4 border-yellow-500">
-<h3 class="font-bold text-lg mb-2">Pesan Pengunjung</h3>
+<h3 class="font-bold text-lg mb-2">Kelola Tentang</h3>
 
 <p class="text-sm text-gray-500 mb-4">
-Lihat pesan dari pengunjung
+Lihat tentang pengunjung
 </p>
 
-<a href="{{ route('admin.kontak.index') }}"
+<a href="{{ route('admin.tentang.index') }}"
 class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white text-sm px-4 py-2 rounded-lg">
 Kelola
 </a>
@@ -108,7 +108,7 @@ Kelola
 <div class="bg-white rounded-xl shadow p-6">
 
 <div class="flex justify-between mb-4">
-<h3 class="font-bold">Pesan Terbaru</h3>
+<h3 class="font-bold">Pesan Terbaru 📞 </h3>
 
 <a href="{{ route('admin.kontak.index') }}" 
 class="text-yellow-500 font-semibold text-sm">

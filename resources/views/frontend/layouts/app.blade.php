@@ -41,6 +41,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
     @stack('css')
+    
 </head>
 
 <body class="bg-gray-100 text-black font-sans">
@@ -54,5 +55,7 @@
     @include('frontend.layouts.footer')
 
     @stack('js')
+
+    
 </body>
 </html>

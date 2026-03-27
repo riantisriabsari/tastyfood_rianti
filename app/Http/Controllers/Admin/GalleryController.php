@@ -11,7 +11,7 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $galleries = Gallery::latest()->paginate(8);
+        $galleries = Gallery::latest()->get();
         return view('admin.gallery.index', compact('galleries'));
     }
 
@@ -73,7 +73,7 @@ class GalleryController extends Controller
             ->with('success', 'Data berhasil diupdate');
     }
 
-    // 🔥 INI YANG KURANG
+    
     public function destroy(Gallery $gallery)
     {
         if ($gallery->gambar && Storage::disk('public')->exists($gallery->gambar)) {

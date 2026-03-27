@@ -62,9 +62,10 @@
         <div>
             <h4 class="font-semibold text-white mb-4">Useful Links</h4>
             <ul class="space-y-3 text-sm">
-                <li><a href="#" class="hover:text-white transition">Blog</a></li>
-                <li><a href="#" class="hover:text-white transition">Galeri</a></li>
-                <li><a href="#" class="hover:text-white transition">Testimonial</a></li>
+                <li><a href="tentang" class="hover:text-white transition">Tentang Kami</a></li>
+                <li><a href="berita" class="hover:text-white transition">Berita</a></li>
+                <li><a href="gallery" class="hover:text-white transition">Galeri</a></li>
+                 <li><a href="kontak" class="hover:text-white transition">Kontak</a></li>
             </ul>
         </div>
 

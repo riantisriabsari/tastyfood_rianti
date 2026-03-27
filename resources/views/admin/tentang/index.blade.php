@@ -3,77 +3,113 @@
 @section('title', 'Data Tentang')
 
 @section('content')
-<div class="p-6">
+<div class="p-4 sm:p-6 lg:p-8">
 
-    <h2 class="text-lg font-semibold mb-4">Data Tentang</h2>
+    <!-- HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
 
-    <a href="{{ route('admin.tentang.create') }}"
-       class="inline-block mb-4 px-4 py-2 bg-blue-600 text-white rounded text-sm">
-        + Tambah Data
-    </a>
+        <h2 class="text-2xl sm:text-3xl font-bold text-yellow-500">
+            Data Tentang
+        </h2>
 
-    <div class="overflow-x-auto">
-        <table class="w-full border border-gray-300 text-sm">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="border px-3 py-2">No</th>
-                    <th class="border px-3 py-2">Section</th>
-                    <th class="border px-3 py-2">Deskripsi</th>
-                    <th class="border px-3 py-2">Gambar</th>
-                    <th class="border px-3 py-2">Aksi</th>
-                </tr>
-            </thead>
+        <a href="{{ route('admin.tentang.create') }}"
+           class="px-6 py-3 bg-yellow-500 hover:bg-yellow-500 text-white font-semibold rounded-xl shadow transition text-sm sm:text-base">
+            + Tambah Data
+        </a>
 
-            <tbody>
-                @forelse ($tentangs as $index => $tentang)
-                <tr>
-                    <td class="border px-3 py-2 text-center">
-                        {{ $index + 1 }}
-                    </td>
-
-                    <td class="border px-3 py-2">
-                        {{ $tentang->section }}
-                    </td>
-
-                    <td class="border px-3 py-2">
-                        {{ $tentang->deskripsi }}
-                    </td>
-
-<td class="border px-3 py-2">
-    <div class="w-20 h-20 bg-gray-200 rounded overflow-hidden mx-auto flex items-center justify-center">
-        <img src="{{ asset('storage/' . $tentang->gambar) }}"
-             class="w-full h-full object-cover">
     </div>
-</td>
 
+    <!-- CARD -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
 
-                    <td class="border px-3 py-2 text-center">
-                        <a href="{{ route('admin.tentang.edit', $tentang->id) }}"
-                           class="text-blue-600 hover:underline">
-                            Edit
-                        </a>
+        <div class="overflow-x-auto">
 
-                        <form action="{{ route('admin.tentang.destroy', $tentang->id) }}"
-                              method="POST"
-                              class="inline"
-                              onsubmit="return confirm('Yakin hapus data ini?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="text-red-600 hover:underline ml-2">
-                                Hapus
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="5" class="text-center py-4">
-                        Data belum tersedia
-                    </td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+            <table class="min-w-full text-base">
+
+                <!-- HEADER TABLE -->
+                <thead class="bg-yellow-500 text-white text-sm sm:text-base">
+                    <tr>
+                        <th class="px-6 py-4 border text-center">No</th>
+                        <th class="px-6 py-4 border text-left">Section</th>
+                        <th class="px-6 py-4 border text-left">Deskripsi</th>
+                        <th class="px-6 py-4 border text-center">Gambar</th>
+                        <th class="px-6 py-4 border text-center">Aksi</th>
+                    </tr>
+                </thead>
+
+                <!-- BODY -->
+                <tbody class="text-gray-700">
+
+                    @forelse ($tentangs as $index => $tentang)
+
+                    <tr class="hover:bg-yellow-50 transition">
+
+                        <!-- NO -->
+                        <td class="px-6 py-4 border text-center font-medium">
+                            {{ $index + 1 }}
+                        </td>
+
+                        <!-- SECTION -->
+                        <td class="px-6 py-4 border font-semibold">
+                            {{ $tentang->section }}
+                        </td>
+
+                        <!-- DESKRIPSI -->
+                        <td class="px-6 py-4 border text-gray-600 max-w-md leading-relaxed">
+                            {{ $tentang->deskripsi }}
+                        </td>
+
+                        <!-- GAMBAR -->
+                        <td class="px-6 py-4 border">
+                            <div class="w-24 h-24 mx-auto rounded-xl overflow-hidden shadow bg-gray-100">
+                                <img src="{{ asset('storage/' . $tentang->gambar) }}"
+                                     class="w-full h-full object-cover">
+                            </div>
+                        </td>
+
+                        <!-- AKSI -->
+                        <td class="px-6 py-4 border">
+
+                            <div class="flex justify-center gap-3 flex-wrap">
+
+                                <a href="{{ route('admin.tentang.edit', $tentang->id) }}"
+                                   class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow text-sm">
+                                    Edit
+                                </a>
+
+                                <form action="{{ route('admin.tentang.destroy', $tentang->id) }}"
+                                      method="POST"
+                                      onsubmit="return confirm('Yakin hapus data ini?')">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow text-sm">
+                                        Hapus
+                                    </button>
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    @empty
+
+                    <tr>
+                        <td colspan="5" class="text-center py-10 text-gray-500 text-lg">
+                            Data belum tersedia
+                        </td>
+                    </tr>
+
+                    @endforelse
+
+                </tbody>
+
+            </table>
+
+        </div>
+
     </div>
 
 </div>

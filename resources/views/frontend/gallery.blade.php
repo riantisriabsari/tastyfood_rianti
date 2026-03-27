@@ -27,12 +27,28 @@ body{font-family:'Poppins',sans-serif;}
 
 <a href="/" class="text-xl font-bold">TASTY FOOD</a>
 
-<nav class="hidden lg:flex space-x-8 font-semibold">
-<a href="/" class="hover:text-gray-300">HOME</a>
-<a href="/tentang" class="hover:text-gray-300">TENTANG</a>
-<a href="/berita" class="hover:text-gray-300">BERITA</a>
-<a href="/gallery" class="underline">GALERI</a>
-<a href="/kontak" class="hover:text-gray-300">KONTAK</a>
+<nav class="hidden lg:flex space-x-8 text-sm tracking-wider">
+
+<a href="/" class="relative hover:text-gray-300">
+HOME
+</a>
+
+<a href="/tentang" class="relative hover:text-gray-300">
+TENTANG
+</a>
+
+<a href="/berita" class="relative hover:text-gray-300">
+BERITA
+</a>
+
+<a href="/gallery" class="relative font-bold">
+GALERI
+<span class="absolute left-0 -bottom-1 w-full h-[2px] bg-white"></span>
+
+<a href="/kontak" class="relative hover:text-gray-300">
+KONTAK
+</a>
+
 </nav>
 
 <button @click="open=!open" class="lg:hidden">
