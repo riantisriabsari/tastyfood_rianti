@@ -13,27 +13,27 @@
         </h2>
 
         <a href="{{ route('admin.tentang.create') }}"
-           class="px-6 py-3 bg-yellow-500 hover:bg-yellow-500 text-white font-semibold rounded-xl shadow transition text-sm sm:text-base">
+           class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-xl shadow transition text-sm sm:text-base">
             + Tambah Data
         </a>
 
     </div>
 
     <!-- CARD -->
-    <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
 
         <div class="overflow-x-auto">
 
-            <table class="min-w-full text-base">
+            <table class="min-w-full text-sm sm:text-base">
 
                 <!-- HEADER TABLE -->
-                <thead class="bg-yellow-500 text-white text-sm sm:text-base">
+                <thead class="bg-yellow-500 text-white">
                     <tr>
-                        <th class="px-6 py-4 border text-center">No</th>
-                        <th class="px-6 py-4 border text-left">Section</th>
-                        <th class="px-6 py-4 border text-left">Deskripsi</th>
-                        <th class="px-6 py-4 border text-center">Gambar</th>
-                        <th class="px-6 py-4 border text-center">Aksi</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 border text-center w-16">No</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 border text-left">Section</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 border text-left">Deskripsi</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 border text-center">Gambar</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 border text-center w-40">Aksi</th>
                     </tr>
                 </thead>
 
@@ -42,38 +42,41 @@
 
                     @forelse ($tentangs as $index => $tentang)
 
-                    <tr class="hover:bg-yellow-50 transition">
+                    <tr class="hover:bg-yellow-50 transition duration-200">
 
                         <!-- NO -->
-                        <td class="px-6 py-4 border text-center font-medium">
+                        <td class="px-4 sm:px-6 py-4 border text-center font-medium">
                             {{ $index + 1 }}
                         </td>
 
                         <!-- SECTION -->
-                        <td class="px-6 py-4 border font-semibold">
+                        <td class="px-4 sm:px-6 py-4 border font-semibold">
                             {{ $tentang->section }}
                         </td>
 
                         <!-- DESKRIPSI -->
-                        <td class="px-6 py-4 border text-gray-600 max-w-md leading-relaxed">
-                            {{ $tentang->deskripsi }}
+                        <td class="px-4 sm:px-6 py-4 border text-gray-600 max-w-xs sm:max-w-md leading-relaxed">
+                            {{ \Illuminate\Support\Str::limit($tentang->deskripsi, 100) }}
                         </td>
 
                         <!-- GAMBAR -->
-                        <td class="px-6 py-4 border">
-                            <div class="w-24 h-24 mx-auto rounded-xl overflow-hidden shadow bg-gray-100">
-                                <img src="{{ asset('storage/' . $tentang->gambar) }}"
-                                     class="w-full h-full object-cover">
+                        <td class="px-4 sm:px-6 py-4 border">
+                            <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-xl overflow-hidden shadow bg-gray-100">
+                                @if ($tentang->gambar)
+                                    <img src="{{ asset('storage/' . $tentang->gambar) }}"
+                                         class="w-full h-full object-cover">
+                                @else
+                                    <span class="text-gray-400 text-sm">-</span>
+                                @endif
                             </div>
                         </td>
 
                         <!-- AKSI -->
-                        <td class="px-6 py-4 border">
-
-                            <div class="flex justify-center gap-3 flex-wrap">
+                        <td class="px-4 sm:px-6 py-4 border">
+                            <div class="flex justify-center gap-2 sm:gap-3 flex-wrap">
 
                                 <a href="{{ route('admin.tentang.edit', $tentang->id) }}"
-                                   class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow text-sm">
+                                   class="px-3 sm:px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow text-xs sm:text-sm transition">
                                     Edit
                                 </a>
 
@@ -83,13 +86,12 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow text-sm">
+                                    <button class="px-3 sm:px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow text-xs sm:text-sm transition">
                                         Hapus
                                     </button>
                                 </form>
 
                             </div>
-
                         </td>
 
                     </tr>

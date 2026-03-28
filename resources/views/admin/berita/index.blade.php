@@ -20,20 +20,20 @@
     </div>
 
     <!-- CARD -->
-    <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
 
         <div class="overflow-x-auto">
 
-            <table class="min-w-full text-base">
+            <table class="min-w-full text-sm sm:text-base">
 
                 <!-- HEADER TABLE -->
-                <thead class="bg-yellow-500 text-white text-sm sm:text-base">
+                <thead class="bg-yellow-500 text-white">
                     <tr>
-                        <th class="px-6 py-4 border text-center">No</th>
+                        <th class="px-6 py-4 border text-center rounded-tl-2xl">No</th>
                         <th class="px-6 py-4 border text-center">Gambar</th>
                         <th class="px-6 py-4 border text-left">Judul</th>
                         <th class="px-6 py-4 border text-left">Isi</th>
-                        <th class="px-6 py-4 border text-center">Aksi</th>
+                        <th class="px-6 py-4 border text-center rounded-tr-2xl">Aksi</th>
                     </tr>
                 </thead>
 
@@ -43,9 +43,10 @@
                 @forelse ($beritas as $index => $berita)
 
                 <tr class="hover:bg-yellow-50 transition">
+                    @php $last = $loop->last; @endphp
 
                     <!-- NO -->
-                    <td class="px-6 py-4 border text-center font-medium">
+                    <td class="px-6 py-4 border text-center font-medium {{ $last ? 'rounded-bl-2xl' : '' }}">
                         {{ $index + 1 }}
                     </td>
 
@@ -72,7 +73,7 @@
                     </td>
 
                     <!-- AKSI -->
-                    <td class="px-6 py-4 border">
+                    <td class="px-6 py-4 border {{ $last ? 'rounded-br-2xl' : '' }}">
 
                         <div class="flex justify-center gap-3 flex-wrap">
 
@@ -103,7 +104,7 @@
                 @empty
 
                 <tr>
-                    <td colspan="5" class="text-center py-10 text-gray-500 text-lg">
+                    <td colspan="5" class="text-center py-10 text-gray-500 text-lg rounded-b-2xl">
                         Data berita belum tersedia
                     </td>
                 </tr>

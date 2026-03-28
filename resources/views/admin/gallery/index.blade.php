@@ -124,12 +124,12 @@
 <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3 mb-6">
 
     <h2 class="text-xl md:text-2xl font-bold text-yellow-500">
-        📷 Gallery
+        Data Gallery
     </h2>
 
     <a href="{{ route('admin.gallery.create') }}"
        class="px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-white rounded-lg shadow transition">
-        ➕ Tambah Foto
+        + Tambah Gallery
     </a>
 
 </div>

@@ -3,49 +3,64 @@
 @section('title', 'Pesan Kontak')
 
 @section('content')
-<div class="p-4 md:p-6">
+<div class="p-4 sm:p-6 lg:p-8">
 
-    <h1 class="text-xl md:text-2xl font-bold mb-6 text-yellow-500">
-        Pesan Masuk
-    </h1>
+    <!-- HEADER -->
+    <div class="mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-yellow-500">
+            Pesan Masuk
+        </h2>
+    </div>
 
     @if(session('success'))
-        <div class="bg-yellow-100 text-yellow-700 p-3 mb-4 rounded">
+        <div class="bg-yellow-100 text-yellow-700 px-4 py-3 mb-6 rounded-xl shadow">
             {{ session('success') }}
         </div>
     @endif
 
-    <div class="overflow-x-auto">
-        <table class="w-full bg-white rounded-lg shadow text-sm md:text-base">
+    <!-- CARD -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
 
-            <thead class="bg-yellow-400 text-white">
-                <tr>
-                    <th class="p-2 md:p-3 border text-left">Nama</th>
-                    <th class="p-2 md:p-3 border text-left">Email</th>
-                    <th class="p-2 md:p-3 border text-left">Pesan</th>
-                    <th class="p-2 md:p-3 border w-28 text-center">Aksi</th>
-                </tr>
-            </thead>
+        <div class="overflow-x-auto">
 
-            <tbody>
+            <table class="min-w-full text-sm sm:text-base">
+
+                <!-- HEADER -->
+                <thead class="bg-yellow-500 text-white">
+                    <tr>
+                        <th class="px-6 py-4 border text-left rounded-tl-2xl">Nama</th>
+                        <th class="px-6 py-4 border text-left">Email</th>
+                        <th class="px-6 py-4 border text-left">Pesan</th>
+                        <th class="px-6 py-4 border text-center rounded-tr-2xl w-32">Aksi</th>
+                    </tr>
+                </thead>
+
+                <!-- BODY -->
+                <tbody class="text-gray-700">
 
                 @forelse($contacts as $item)
 
-                    <tr class="hover:bg-yellow-50 transition">
+                    @php $last = $loop->last; @endphp
 
-                        <td class="p-2 md:p-3 border break-words">
+                    <tr class="hover:bg-yellow-50 transition duration-200">
+
+                        <!-- NAMA -->
+                        <td class="px-6 py-4 border break-words {{ $last ? 'rounded-bl-2xl' : '' }}">
                             {{ $item->nama }}
                         </td>
 
-                        <td class="p-2 md:p-3 border break-words">
+                        <!-- EMAIL -->
+                        <td class="px-6 py-4 border break-words">
                             {{ $item->email }}
                         </td>
 
-                        <td class="p-2 md:p-3 border break-words max-w-xs">
-                            {{ $item->pesan }}
+                        <!-- PESAN -->
+                        <td class="px-6 py-4 border break-words max-w-xs sm:max-w-md">
+                            {{ \Illuminate\Support\Str::limit($item->pesan, 120) }}
                         </td>
 
-                        <td class="p-2 md:p-3 border text-center">
+                        <!-- AKSI -->
+                        <td class="px-6 py-4 border text-center {{ $last ? 'rounded-br-2xl' : '' }}">
 
                             <form method="POST" action="{{ route('admin.kontak.destroy', $item->id) }}">
                                 @csrf
@@ -53,7 +68,7 @@
 
                                 <button
                                     onclick="return confirm('Hapus pesan ini?')"
-                                    class="bg-red-500 hover:bg-red-500 text-white px-3 py-1 rounded transition text-sm"
+                                    class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow text-sm transition"
                                 >
                                     Hapus
                                 </button>
@@ -67,18 +82,20 @@
                 @empty
 
                     <tr>
-                        <td colspan="4" class="text-center p-4 text-gray-500">
+                        <td colspan="4" class="text-center py-10 text-gray-500 text-lg rounded-b-2xl">
                             Belum ada pesan masuk
                         </td>
                     </tr>
 
                 @endforelse
 
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
+
+        </div>
+
     </div>
 
 </div>
 @endsection
-
