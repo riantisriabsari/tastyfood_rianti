@@ -5,6 +5,18 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+ <div class="w-full flex flex-col items-center justify-center mb-6 text-center">
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-yellow-500 tracking-wide">
+        Testy Food
+    </h1>
+
+    <p class="text-gray-500 text-sm sm:text-base mt-2">
+        Selamat datang kembali 👋
+    </p>
+
+</div>
+
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
