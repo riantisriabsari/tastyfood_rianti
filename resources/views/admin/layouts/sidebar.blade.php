@@ -102,7 +102,7 @@
     border-radius:16px;
 }
 
-/* COLLAPSE */
+/* COLLAPSE MANUAL */
 .sidebar.collapsed{
     width:80px;
 }
@@ -157,7 +157,7 @@
     font-weight:500;
 }
 
-/* ICON BOX */
+/* ICON */
 .icon{
     font-size:18px;
     width:34px;
@@ -167,7 +167,6 @@
     justify-content:center;
     border-radius:10px;
     background:#f3f3f3;
-    transition:0.3s;
 }
 
 /* HOVER */
@@ -180,12 +179,10 @@
 .menu a.active{
     background:linear-gradient(135deg,#FFC107,#FF9800);
     color:white;
-    box-shadow:0 8px 18px rgba(255,193,7,0.3);
 }
 
 .menu a.active .icon{
     background:rgba(255,255,255,0.25);
-    color:white;
 }
 
 /* COLLAPSE TEXT */
@@ -196,17 +193,9 @@
 /* BOTTOM */
 .bottom-menu{
     margin-top:20px;
-    padding-top:10px;
 }
 
-.divider{
-    margin:10px 0;
-    border:none;
-    height:1px;
-    background:#eee;
-}
-
-/* VIEW SITE */
+/* VIEW */
 .view-site{
     display:flex;
     justify-content:center;
@@ -218,7 +207,6 @@
     background:#f5f5f5;
     color:#333;
     margin-bottom:10px;
-    transition:0.3s;
 }
 
 .view-site:hover{
@@ -234,32 +222,53 @@
     background:#FFC107;
     color:white;
     border-radius:10px;
-    cursor:pointer;
-    transition:0.3s;
 }
 
-.logout-btn:hover{
-    background:#ffb300;
-}
+/* ========================= */
+/* RESPONSIVE TANPA HILANG 😏 */
+/* ========================= */
 
-/* MOBILE */
-@media(max-width:768px){
+/* TABLET */
+@media(max-width:1024px){
 
     .sidebar{
-        position:fixed;
-        left:-260px;
-        top:0;
-        height:100%;
-        z-index:999;
+        width:90px;
+        padding:18px 10px;
     }
 
-    .sidebar.active{
-        left:0;
+    .sidebar .text,
+    .admin-text{
+        display:none;
+    }
+
+}
+
+/* HP */
+@media(max-width:640px){
+
+    .sidebar{
+        width:70px;
+        padding:15px 8px;
+    }
+
+    .icon{
+        width:30px;
+        height:30px;
+        font-size:16px;
     }
 
 }
 
 </style>
+
+<script>
+const sidebar = document.getElementById('sidebar');
+const toggle = document.getElementById('toggleSidebar');
+
+toggle.onclick = function(){
+    sidebar.classList.toggle('collapsed');
+}
+</script>
 
 <script>
 const sidebar = document.getElementById('sidebar');
